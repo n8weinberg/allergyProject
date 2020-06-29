@@ -1,0 +1,53 @@
+#container {
+	padding: 10px;
+	background-color: #eee;
+}
+
+h1, h2, h3 {
+	margin: 0;
+}
+
+#header {
+	background-color: orange;
+}
+
+#interaction {
+	background-color: green;
+	padding: 10px;
+}
+
+#UITitle {
+	background-color: yellow;
+}
+
+#TB {
+	color: white;
+	background-color: purple;
+}
+
+#dispDB {
+	display: flex;
+	padding: 10px;
+	background-color: cyan;
+}
+
+#preDB {
+	padding: 5px;
+	background-color: red;
+	float: left;
+}
+
+#usrDB {
+	padding: 5px;
+	float: right;
+	margin-left: auto;
+	background-color: magenta;
+}
+
+#footer {
+	background-color: black;
+	padding: 10px;
+	color: white;
+	clear: both;
+	text-align: right;
+}
