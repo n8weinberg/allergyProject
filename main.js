@@ -1,4 +1,4 @@
-let emptyArray = [];
+let userArray = [];
 let stockArray = ['peanuts', 'apples', 'water', 'eggs', 'milk'];
 console.log(stockArray);
 
@@ -21,11 +21,48 @@ let ul = document.createElement('ul');
 let li = document.createElement('li');
 
 
+
+
+/////////STOCK LIST///////////////
+//create new html element that is an h2 element
+const preTitle = h2;
+//fill that newly created h2 element with new text
+preTitle.innerText = 'No Foods Yet';
+//create child element of the preDB element
+preDB.appendChild(preTitle);
+
 //makes scriptUL a ul html element
 let scriptUL = document.createElement('ul');
 //give scriptUL the id of scriptFill
 scriptUL.id = 'scriptFill';
+//create a child html element in the preDB element with a UL element
+//	defined by the scriptUL and has id of 'scriptFill'. 
+//		this is added after the preTitle h2.
+preDB.appendChild(scriptUL);
 
+//waits for 1.5s for the stock li to fill
+setTimeout(stockArrayFiller, 1500);
+
+//function that creates an unordered list in the preDB html element
+function stockArrayFiller(){
+	//gives the a new title after a given time
+	preTitle.innerText = 'Foods are Filled:'
+	//loops though the stock array add all list elements
+	for(let foodName of stockArray){
+		//create a li element
+		let li = document.createElement('li');
+		//append the scriptUL element with the li
+		scriptUL.appendChild(li);
+		//changes the html with the foodName
+		li.innerHTML +=foodName;
+	}
+}
+
+
+
+
+
+////////USER CREATED LIST//////////
 //makes usrFill a ul html element
 let usrFill = document.createElement('ul');
 //set id of usrFill to usrFill
@@ -38,61 +75,41 @@ usrTitle.innerText = 'User Filled Foods:';
 //create child elment of usrDB element to be title h2 element
 usrDB.appendChild(usrTitle);
 
-//create new html element that is an h2 element
-const preTitle = h2;
-//fill that newly created h2 element with new text
-preTitle.innerText = 'No Foods Yet';
-//create child element of the preDB element
-preDB.appendChild(preTitle);
+//append the usrDB div with a ul that's filled by the user
+usrDB.appendChild(usrFill);
 
-//create a child html element in the preDB element with a UL element
-//	defined by the scriptUL and has id of 'scriptFill'. 
-//		this is added after the preTitle h2.
-preDB.appendChild(scriptUL);
-
-//function that creates an unordered list in the preDB html element
-function stockArrayFiller(){
-	preTitle.innerText = 'Foods are Filled:'
-	for(let i of stockArray){
-		let li = document.createElement('li');
-		scriptUL.appendChild(li);
-		li.innerHTML +=i;
-		// console.log(i);
-	}
-}
-
-
-
-setTimeout(stockArrayFiller, 1500);
-
-
+//event listener that listens to the textbox (#TB) of the DOM
+//	when the any key is pushed, it queries onSubmit
 foodInput.addEventListener('keyup', onSubmit);
 
+//if the key pressed was the Enter key, add food to array
 function onSubmit(e){
+	//keycode for 'Enter' key is 13
 	if(e.keyCode === 13){
 		e.preventDefault();
-		emptyArray.push(`${foodInput.value}`);
-		console.log(emptyArray);
+		//pushes the value we wrote in the TB to the userArray
+		userArray.push(`${foodInput.value}`);
+		console.log(userArray);
+		//creates a list item that's inserted into the DOM with the
+		//	value entered and in the UL location usrFill
 		createListFromArray(usrFill, `${foodInput.value}`);
 		foodInput.value = '';
 	}
-
 }
 
 
-usrDB.appendChild(usrFill);
-
-//function that creates an unordered list in the preDB html element
+//function that creates an unordered list in the chosen html element
+//	the ulToEdit is the desired element the function appendsChild to
+//	inputFood is the food that's input from the user input
 function createListFromArray(ulToEdit, inputFood){
-	// preTitle.innerText = 'Foods are Filled:'
-	// for(let i of stockArray){
-		let li = document.createElement('li');
-		ulToEdit.appendChild(li);
-		li.innerHTML +=inputFood;
-		// console.log(findCommonElements(emptyArray, stockArray));
-		console.log(stockArray.includes(`${inputFood}`));
-		// console.log(i);
-	// }
+	//creates an list element variable		
+	let li = document.createElement('li');
+	//appends the passed in html element with a list element
+	ulToEdit.appendChild(li);
+	//changes the li element just appended with the value passed in
+	li.innerHTML +=inputFood;
+	//boolean logs if the stockArray has the passed in inputFood
+	console.log(stockArray.includes(`${inputFood}`));
 }
 
 
