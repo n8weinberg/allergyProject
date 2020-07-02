@@ -21,8 +21,15 @@ h1, h2, h3 {
 }
 
 #TB {
-	color: white;
+	color: green;
+	font-weight: bold;
 	background-color: purple;
+	width: 170px;
+
+}
+
+input::placeholder{
+	color:orange;
 }
 
 #dispDB {
