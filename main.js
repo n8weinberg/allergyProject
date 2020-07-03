@@ -1,5 +1,33 @@
 let userArray = [];
 let stockArray = ['peanuts', 'apples', 'water', 'eggs', 'milk'];
+
+const allergenObject = {
+	dairy: {
+		milk: 	['Butter','Buttermilk','Casein','Casein hydrolysate',
+				'Caseinates','Cheese','Cottage cheese','Cream','Curds',
+				'Custard','Diacetyl','Ghee','Half-and-half',
+				'half and half','Lactalbumin','Lactoferrin','Lactose',
+				'Lactulose','Milk protein hydrolysate','Pudding',
+				'Recaldent','Rennet casein','Sour cream','Tagatose',
+				'Whey','hydrolysate','Yogurt'],
+		egg: 	['Albumin ','albumen','egg white','egg yolk','Eggnog',
+				'Lysozyme','Mayonnaise','Meringue','Ovalbumin','Surimi'],
+	nut: {
+		peanut: 	['Arachis oil','Artificial nuts','Beer nuts',
+					'Goobers','Ground nuts','Lupin','lupin','Mandelonas',
+					'Monkey nuts','Nut meat','Nut pieces',
+					'Peanut butter','Peanut flour','Peanut oil'],
+		tree_nut: 	['Almond','Beechnut','Black walnut','Brazil',
+					'Cashew','Chestnut','Chinquapin','Filbert',
+					'hazelnut','Gianduja','Ginkgo','Hickory','Litchi',
+					'lichee','lychee','Macadamia','Nangai','Pecan',
+					'Pesto','Pili','Pine','pignoli','pignon',
+					'pinyon ','Pistachio','Praline','Shea','Walnut']
+		}
+	}
+
+}
+
 console.log(stockArray);
 
 //assigning foodInput to the text box element to enter foods in
@@ -56,6 +84,7 @@ function stockArrayFiller(){
 		//changes the html with the foodName
 		li.innerHTML +=foodName;
 	}
+	// pluralizeStock();
 }
 
 
@@ -108,11 +137,37 @@ function createListFromArray(ulToEdit, inputFood){
 	ulToEdit.appendChild(li);
 	//changes the li element just appended with the value passed in
 	li.innerHTML +=inputFood;
-	//boolean logs if the stockArray has the passed in inputFood
-	console.log(stockArray.includes(`${inputFood}`));
+	//boolean logs if the stockArray has the passed in inputFood 
+	//	allows for the user entering in the plural
+	const singularChecker = 
+		stockArray.includes(`${inputFood}`) || 
+		stockArray.includes(`${inputFood}s`);
+	// console.log(stockArray.includes(`${inputFood}`));
+	console.log(singularChecker);
+	const objectChecker = () =>{
+		// allergenObject.includes(`${inputFood}`);
+		allergenObject.find(food => food.dairy.milk.includes(`${foodInput}`));
+		console.log(`AllergenObject returned ${foodInput}`);
+	}
+	console.log(objectChecker());
+
+
 }
 
+// let plurlaStockArray = [];
 
+// function pluralizeStock(){
+// 	for(item in stockArray){
+// 		if(item[-1] == 's'){
+// 			plurlaStockArray[item] = stockArray[item] + 's';
+// 		}else{
+// 			plurlaStockArray[item] = stockArray[item];
+// 		}
+// 	}
+// }
+
+
+// console.log('Plural Stock' + plurlaStockArray);
 
 //returns true or false if the two array's have a similar item
 function findCommonElements(arr1, arr2){
